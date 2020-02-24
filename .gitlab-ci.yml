@@ -1,0 +1,7 @@
+include:
+  - project: syseleven/gitlab-ci-templates
+    file: DockerBuild-kaniko.yml
+    ref: 1.4.0
+  - project: syseleven/gitlab-ci-templates
+    file: MarkdownLint.yml
+    ref: 1.4.0

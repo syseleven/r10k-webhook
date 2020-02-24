@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+BRANCH=${1:-production}
+BRANCH=${BRANCH/refs\/heads\//}
+
+flock -x /tmp/r10k-control-deploy.lock r10k deploy environment --puppetfile "${BRANCH}"

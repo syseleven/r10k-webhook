@@ -1,0 +1,54 @@
+[
+  {
+    "id": "control",
+    "execute-command": "/usr/local/bin/r10k-control",
+    "command-working-directory": "/etc/puppetlabs/code",
+    "pass-arguments-to-command":
+    [
+      {
+        "source": "payload",
+        "name": "ref"
+      }
+    ],
+    "response-message": "Executing r10k deployment for your control repository",
+    "trigger-rule":
+    {
+      "match":
+      {
+        "type": "value",
+        "value": "{{ getenv "GITLAB-TOKEN" }}",
+        "parameter":
+        {
+          "source": "header",
+          "name": "X-Gitlab-Token"
+        }
+      }
+    }
+  },
+  {
+    "id": "hieradata",
+    "execute-command": "/usr/local/bin/r10k-hieradata",
+    "command-working-directory": "/etc/puppetlabs/code",
+    "pass-arguments-to-command":
+    [
+      {
+        "source": "payload",
+        "name": "ref"
+      }
+    ],
+    "response-message": "Executing r10k deployment for your hieradata repository",
+    "trigger-rule":
+    {
+      "match":
+      {
+        "type": "value",
+        "value": "{{ getenv "GITLAB-TOKEN" }}",
+        "parameter":
+        {
+          "source": "header",
+          "name": "X-Gitlab-Token"
+        }
+      }
+    }
+  }
+]

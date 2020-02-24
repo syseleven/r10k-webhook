@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+flock -x /tmp/r10k-control-deploy.lock r10k deploy module hieradata
