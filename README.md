@@ -11,3 +11,7 @@ The following environment variables are supported:
 - `GITLAB_TOKEN`
 
 Set the "Secret Token" you've configured in Gitlab for the webhook pointing to this container.
+
+- `DEPLOY_CONTROL_ON_START`
+
+Set this to `true` if you want r10k to deployment your control repository on container startup.
