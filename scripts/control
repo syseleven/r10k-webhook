@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
 
-BRANCH=${1/refs\/heads\//}
+BRANCH="${1/refs\/heads\//}"
 
-flock -x /tmp/r10k-control-deploy.lock r10k deploy environment --generate-types --puppetfile "${BRANCH}"
+flock -x /tmp/r10k-control-deploy.lock r10k deploy environment --puppet-path /usr/bin/puppet --generate-types --puppetfile ${BRANCH}

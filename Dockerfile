@@ -15,14 +15,21 @@ RUN        curl -L --silent -o webhook.tar.gz https://github.com/adnanh/webhook/
 
 FROM       $R10K_IMAGE
 USER       root
+
+# We need puppet in there because we're using `--generate-types`
+RUN        gem install --no-doc puppet
+
 COPY       --from=build /usr/local/bin/webhook /usr/local/bin/webhook
 COPY       hooks.json /etc/webhook/hooks.json
 COPY       scripts/control /usr/local/bin/r10k-control
 COPY       scripts/hieradata /usr/local/bin/r10k-hieradata
+COPY       scripts/20-deploy.sh /docker-entrypoint.d/20-deploy.sh
+COPY       scripts/docker-entrypoint.sh /docker-entrypoint.sh
 RUN        mkdir /var/cache/r10k && \
            chown -R puppet: /var/cache/r10k
 
 USER       puppet
 VOLUME     "/etc/webhook" "/etc/puppetlabs/r10k" "/etc/puppetlabs/code"
 EXPOSE     9000
-ENTRYPOINT ["/usr/local/bin/webhook", "-template", "-hooks", "/etc/webhook/hooks.json", "-verbose"]
+ENTRYPOINT ["/docker-entrypoint.sh"]
+CMD        ["-template", "-hooks", "/etc/webhook/hooks.json", "-verbose"]
