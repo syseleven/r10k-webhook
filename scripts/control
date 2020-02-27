@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
 
-BRANCH="${1/refs\/heads\//}"
+BRANCH="$(echo "${1}" | sed 's,^refs/heads/,,g')"
 
-flock -x /tmp/r10k-control-deploy.lock r10k deploy environment --puppet-path /usr/bin/puppet --generate-types --puppetfile ${BRANCH}
+echo "${BRANCH}" | xargs flock -x /tmp/r10k-control-deploy.lock r10k deploy environment --puppet-path /usr/bin/puppet --generate-types --puppetfile
