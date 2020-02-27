@@ -10,20 +10,7 @@
         "name": "ref"
       }
     ],
-    "response-message": "Executing r10k deployment for your control repository",
-    "trigger-rule":
-    {
-      "match":
-      {
-        "type": "value",
-        "value": "{{ getenv "GITLAB-TOKEN" }}",
-        "parameter":
-        {
-          "source": "header",
-          "name": "X-Gitlab-Token"
-        }
-      }
-    }
+    "response-message": "Executing r10k deployment for your control repository"
   },
   {
     "id": "hieradata",
@@ -36,19 +23,6 @@
         "name": "ref"
       }
     ],
-    "response-message": "Executing r10k deployment for your hieradata repository",
-    "trigger-rule":
-    {
-      "match":
-      {
-        "type": "value",
-        "value": "{{ getenv "GITLAB-TOKEN" }}",
-        "parameter":
-        {
-          "source": "header",
-          "name": "X-Gitlab-Token"
-        }
-      }
-    }
+    "response-message": "Executing r10k deployment for your hieradata repository"
   }
 ]
