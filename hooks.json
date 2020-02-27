@@ -6,8 +6,8 @@
     "pass-arguments-to-command":
     [
       {
-        "source": "payload",
-        "name": "ref"
+        "source": "url",
+        "name": "environment"
       }
     ],
     "response-message": "Executing r10k deployment for your control repository"
@@ -16,13 +16,6 @@
     "id": "hieradata",
     "execute-command": "/usr/local/bin/r10k-hieradata",
     "command-working-directory": "/etc/puppetlabs/code",
-    "pass-arguments-to-command":
-    [
-      {
-        "source": "payload",
-        "name": "ref"
-      }
-    ],
     "response-message": "Executing r10k deployment for your hieradata repository"
   }
 ]
